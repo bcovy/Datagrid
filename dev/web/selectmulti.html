@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./css/datagrid.css" />
+        <link rel="stylesheet" href="./css/site.css" />
+    </head>
+    <body>
+        <div class="section">
+            <nav class="breadcrumb has-bullet-separator">
+                <ul>
+                    <li><a href="./basicpage.html">Basic</a></li>
+                    <li><a href="./remotebasic.html">Remote basic</a></li>
+                    <li><a href="./remote.html">Remote</a></li>
+                    <li><a href="./bulmapage.html">Bulma</a></li>
+                    <li class="is-active"><a href="./selectmulti.html" aria-current="page">Select multi</a></li>
+                    <li><a href="./between.html">Between</a></li>
+                  </ul>
+            </nav>
+        </div>
+        <div class="site-container">
+            <h2>Grid with multi select</h2>
+            <div id="grid_basic"></div>
+            <h2>Grid with multi select and remote source</h2>
+            <div>
+                <button id="grid_refresh">Refresh</button>
+            </div>
+            <div id="grid_remote"></div>
+        </div>
+    </body>
+    <script src="./scripts/datagrid.js"></script>
+    <script src="./scripts/dataset.js"></script>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+            const basic = new DataGrid("grid_basic", {
+                data: MultiData.data,
+                enablePaging: false,
+                tableEvenColumnWidths: true,
+                columns: [
+                    { field: "id", label: "ID", type: "number", filterType: "equals" }, 
+                    { 
+                        field: "name", 
+                        type: "string", 
+                        filterType: "like",
+                        filterMultiSelect: { listAll: true },
+                        filterValues: { Hello: "hello", world: "world", David: "David" }
+                    },
+                    { field: "pcoe", type: "date", formatter: "date" },
+                    { 
+                        field: "location", 
+                        filterType: "equals", 
+                        filterMultiSelect: true,
+                        filterValues: { Westminster: "Westminster", Irvine: "Irvine", Station: "Station" }
+                    }, 
+                    { field: "state",  type: "string", filterType: "equals", filterMultiSelect: true, filterValues: "./api/state"  },
+                    { field: "sale", type: "number", filterType: "between", formatter: "numeric", formatterParams: { precision: 2, style: "currency" } }
+                    ]
+            });
+
+            const basicRemote = new DataGrid("grid_remote", {
+                remoteUrl: "/api/filtermi",
+                remoteProcessing: true,
+                enablePaging: false,
+                refreshableId: "grid_refresh",
+                tableEvenColumnWidths: true,
+                columns: [
+                    { field: "propertyID", type: "number", filterType: "equals" }, 
+                    { field: "address", type: "string", filterType: "like" },
+                    { field: "city", type: "string", filterType: "equals", filterValues: "./api/city", filterMultiSelect: true },
+                    { field: "state",  type: "string", filterType: "equals", filterValues: "./api/state", filterMultiSelect: { listAll: true }  }]
+            });
+
+            basic.init();
+            basicRemote.init();
+        });
+    </script>
+</html>

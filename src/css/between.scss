@@ -1,0 +1,24 @@
+.datagrids-between-button {
+    background-color: hsl(0, 0%, 100%);
+    border: 1px solid transparent;
+    color: hsl(0, 0%, 21%);
+    cursor: pointer;
+    justify-content: center;
+    padding-bottom: calc(0.5em - 1px);
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: calc(0.5em - 1px);
+    text-align: center;
+    white-space: nowrap;
+}
+
+.datagrids-between-input-label {
+    box-sizing: border-box;
+    flex: 1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: inherit;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: left;
+}

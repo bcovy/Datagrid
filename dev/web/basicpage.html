@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./css/datagrid.css" />
+        <link rel="stylesheet" href="./css/site.css" />
+    </head>
+    <body>
+        <div class="section">
+            <nav class="breadcrumb has-bullet-separator">
+                <ul>
+                    <li class="is-active"><a href="./basicpage.html" aria-current="page">Basic</a></li>
+                    <li><a href="./remotebasic.html">Remote basic</a></li>
+                    <li><a href="./remote.html">Remote</a></li>
+                    <li><a href="./bulmapage.html">Bulma</a></li>
+                    <li><a href="./selectmulti.html">Select multi</a></li>
+                    <li><a href="./between.html">Between</a></li>
+                  </ul>
+            </nav>
+        </div>
+        <div class="site-container">
+            <h2>Basic grid with default options</h2>
+            <figure class="highlight">
+                <pre><!--
+                --><code class="language-javascript" data-lang="javascript">
+    <span class="kd">const</span>&nbsp;<span class="nx">basic</span>&nbsp;<span class="o">=</span>&nbsp;<span class="kd">new</span>&nbsp;<span class="nb">DataGrids</span><span class="p">(</span><span class="d1">'</span><span class="s1">grid_basic</span><span class="d1">'</span><span class="d1">,</span>&nbsp;<span class="p">{</span>&nbsp;
+        <span class="nb">enablePaging: </span><span class="kd">false</span>
+        <span class="nb">columns: </span><span class="nc">[</span>
+            <span class="p">{</span><span class="d1"> field: </span><span class="nb">"id"</span><span class="d1">, </span><span class="d1">label: </span><span class="nb">"ID"</span><span class="d1">, </span><span class="d1">columnSize: </span><span class="nb">1</span><span class="d1">, </span><span class="d1">type: </span><span class="nb">"number" </span><span class="p">}</span><span class="d1">,</span>
+            <span class="p">{</span><span class="d1"> field: </span><span class="nb">"name"</span><span class="d1">, </span><span class="d1">columnSize: </span><span class="nb">3</span><span class="d1">, </span><span class="d1">type: </span><span class="nb">"string" </span><span class="p">}</span><span class="d1">,</span>
+            <span class="p">{</span><span class="d1"> field: </span><span class="nb">"pcoe"</span><span class="d1">, </span></span><span class="d1">columnSize: </span><span class="nb">3</span><span class="d1">, </span><span class="d1">type: </span><span class="nb">"date"</span><span class="d1">, </span><span class="d1">formatter: </span><span class="nb">"date" </span><span class="p">}</span><span class="d1">,</span>
+            <span class="p">{</span><span class="d1"> field: </span><span class="nb">"location"</span><span class="d1">, </span><span class="d1">columnSize: </span><span class="nb">2</span><span class="d1">, </span></span><span class="d1"> formatter: </span><span class="nb">"link"</span><span class="d1">, </span><span class="d1">formatterParams: </span><span class="p">{ </span><span class="d1">urlPrefix: </span><span class="nb">"./basicpage.html"</span><span class="d1">,</span><span class="d1"> fieldText: </span><span class="nb">"location"</span><span class="d1">,</span><span class="d1"> target: </span><span class="nb">"_blank" </span><span class="p">}</span><span class="p">}</span><span class="d1">,</span>
+            <span class="p">{</span><span class="d1"> field: </span><span class="nb">"sale"</span><span class="d1">, </span><span class="d1">columnSize: </span><span class="nb">3</span><span class="d1">, </span></span><span class="d1"> type: </span><span class="nb">"number"</span><span class="d1">, </span><span class="d1">formatter: </span><span class="nb">"money" </span><span class="p">}</span><span class="d1">,</span>
+            <span class="nc">]</span><span class="d1">,</span>
+        <span class="nb">data: </span><span class="nc">[</span>
+            <span class="p">{</span><span class="d1"> id: </span><span class="nb">18</span><span class="d1">, </span><span class="d1">name: </span><span class="nb">"AMIRA"</span><span class="d1">, </span><span class="d1">location: </span><span class="nb">"Westminster"</span><span class="d1">pcoe: </span><span class="nb">"2022/12/02"</span><span class="d1">, </span><span class="d1">sale: </span><span class="nb">1002500.358 </span><span class="p">}</span><span class="d1">,</span>
+            <span class="s1">//ect...</span>
+            <span class="nc">]</span>
+        <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+                    </code>
+                </pre>
+            </figure>
+            <div id="grid_basic"></div>   
+            <div>
+                <input id="name" name="name" value="" type="text" placeholder="search name column" />
+                <span>Row count: </span><span id="filter_rowcount">0</span>
+            </div>
+            <div id="grid_filter"></div>
+            <h2>Filter and paging</h2>
+            <figure class="highlight">
+                <pre><!--
+                --><code class="language-javascript" data-lang="javascript">
+    <span class="kd">const</span>&nbsp;<span class="nx">all</span>&nbsp;<span class="o">=</span>&nbsp;<span class="kd">new</span>&nbsp;<span class="nb">DataGrids</span><span class="p">(</span><span class="d1">'</span><span class="s1">grid_all</span><span class="d1">'</span><span class="d1">,</span>&nbsp;<span class="p">{</span>&nbsp;
+        <span class="nb">enablePaging: </span><span class="kd">true</span>
+        <span class="nb">pagerPagesToDisplay: </span><span class="d1">3</span>
+        <span class="nb">pagerRowsPerPage: </span><span class="d1">5</span>
+        <span class="nb">tableEvenColumnWidths: </span><span class="kd">true</span>
+        <span class="nb">movableColumns: </span><span class="kd">true</span>
+        <span class="nb">csvExportId: </span></span><span class="d1">'</span><span class="s1">exportCsv</span><span class="d1">'</span><span class="d1"></span>
+        <span class="nb">columns: </span><span class="nc">[</span>
+            <span class="p">{</span><span class="d1"> field: </span><span class="nb">"id"</span><span class="d1">, </span><span class="d1">label: </span><span class="nb">"ID"</span><span class="d1">, </span><span class="d1">type: </span><span class="nb">"number"</span><span class="d1">, </span><span class="d1">filterType: </span><span class="nb">"equals" </span><span class="p">}</span><span class="d1">,</span>
+            <span class="p">{</span><span class="d1"> field: </span><span class="nb">"name"</span><span class="d1">, </span><span class="d1">type: </span><span class="nb">"string"</span><span class="d1">, </span><span class="d1">filterType: </span><span class="nb">"like" </span><span class="p">}</span><span class="d1">,</span>
+            <span class="p">{</span><span class="d1"> field: </span><span class="nb">"pcoe"</span><span class="d1">, </span></span><span class="d1">type: </span><span class="nb">"date"</span><span class="d1">, </span><span class="d1">formatter: </span><span class="nb">"date" </span><span class="p">}</span><span class="d1">,</span>
+            <span class="p">{</span><span class="d1"> field: </span><span class="nb">"location"</span><span class="d1">, </span></span><span class="d1"> formatter: </span><span class="nb">"link"</span><span class="d1">, </span><span class="d1">formatterParams: </span><span class="p">{ </span><span class="d1">urlPrefix: </span><span class="nb">"./basicpage.html"</span><span class="d1">,</span><span class="d1"> fieldText: </span><span class="nb">"location"</span><span class="d1">,</span><span class="d1"> target: </span><span class="nb">"_blank" </span><span class="p">}</span><span class="d1">, </span><span class="d1">filterType: </span><span class="nb">"equals"</span><span class="d1">, </span><span class="d1">filterValues: </span><span class="p">{ </span><span class="d1">Westminster: </span><span class="nb">"Westminster"</span><span class="d1">,</span><span class="d1"> Irvine: </span><span class="nb">"Irvine" </span><span class="p">}</span><span class="p">}</span><span class="d1">,</span>
+            <span class="p">{</span><span class="d1"> field: </span><span class="nb">"sale"</span><span class="d1">, </span></span><span class="d1"> type: </span><span class="nb">"number"</span><span class="d1">, </span><span class="d1">formatter: </span><span class="nb">"number", </span><span class="d1">formatterParams: </span><span class="p">{ </span><span class="d1">percision: </span><span class="nb">2</span><span class="d1">,</span><span class="d1"> style: </span><span class="nb">"currency" </span><span class="p">}</span><span class="d1">, </span><span class="d1">filterType: </span><span class="nb">"equals" </span><span class="p">}</span>
+            <span class="nc">]</span><span class="d1">,</span>
+        <span class="nb">data: </span><span class="nc">[</span>
+            <span class="p">{</span><span class="d1"> id: </span><span class="nb">18</span><span class="d1">, </span><span class="d1">name: </span><span class="nb">"AMIRA"</span><span class="d1">, </span><span class="d1">location: </span><span class="nb">"Westminster"</span><span class="d1">pcoe: </span><span class="nb">"2022/12/02"</span><span class="d1">, </span><span class="d1">sale: </span><span class="nb">1002500.358 </span><span class="p">}</span><span class="d1">,</span>
+            <span class="s1">//ect...</span>
+            <span class="nc">]</span>
+        <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+                    </code>
+                </pre>
+            </figure>
+            <div>
+                <button id="exportCsv">Export</button>
+            </div>
+            <div id="grid_all"></div>
+        </div>
+    </body>
+    <script src="./scripts/datagrid.js"></script>
+    <script src="./scripts/basic.js"></script>
+</html>

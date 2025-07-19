@@ -1,0 +1,6 @@
+@DataGridApi_HostAddress = http://localhost:5250
+
+GET {{DataGridApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

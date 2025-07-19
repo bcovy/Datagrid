@@ -1,0 +1,88 @@
+[data-tooltip] {
+    position: relative;
+    cursor: pointer;
+    border-bottom: 1px solid rgb(0, 178, 255);
+
+    &.datagrids-tooltip {
+        &::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            display: inline-block;
+            right: -80%;
+            transform: translateX(-50%);
+            background-color: rgba(74,74,74,.9);
+            color: #fff;
+            font-size: 0.9rem;
+            padding: 6px 10px;
+            border-radius: 4px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 10;
+            height: auto;
+            width: 20rem;
+            max-width: 20rem;
+            text-overflow: clip;
+            white-space: normal;
+            word-break: keep-all;
+        }
+
+        &:hover::before,
+        &:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            visibility: hidden;
+            z-index: 10;
+            opacity: 0;
+            transform: translateY(-50%);
+            border-style: solid;
+        }
+    }
+
+    &.datagrids-tooltip-right {
+        &::before {
+            top: 50%;
+            left: auto;
+            right: -30%;
+            bottom: auto;
+            transform: translate(100%, -40%);
+        }
+
+        &::after {
+            top: 50%;
+            bottom: auto;
+            left: auto;
+            right: -30%;
+            transition: opacity 0.3s ease;
+            margin: auto auto -6px -6px;
+            border-width: 6px 6px 6px 0;
+            border-color: transparent rgba(74,74,74,.9) transparent transparent;
+        }
+    }
+
+    &.datagrids-tooltip-left {
+        &::before {
+            top: 50%;
+            left: -60px;
+            right: auto;
+            bottom: auto;
+            transform: translate(-85%, -40%);
+        }
+
+        &::after {
+            top: 50%;
+            bottom: auto;
+            right: auto;
+            left: -9px;
+            transition: opacity 0.3s ease;
+            margin: auto -6px -6px auto;
+            border-width: 6px 0 6px 6px;
+            border-color: transparent transparent transparent rgba(74,74,74,.9);
+        }
+    }
+}

@@ -1,0 +1,49 @@
+{
+  "name": "datagrid",
+  "version": "1.0.0",
+  "description": "JavaScript library that implements an interactive table element with sort and paging functionality",
+  "main": "dist/datagrid.js",
+  "files": [
+    "build",
+    "dist",
+    "src"
+  ],
+  "directories": {
+    "lib": "./src",
+    "test": "./tests"
+  },
+  "scripts": {
+    "test": "node ./node_modules/karma/bin/karma start karma.conf.js",
+    "lint": "eslint src",
+    "dev:cssmin": "rollup -c build/rollup.conf.mjs --bundleConfigAsCjs --environment TARGET:cssmin",
+    "dev:scss": "rollup -c build/rollup.conf.mjs --bundleConfigAsCjs --environment TARGET:scss",
+    "dev:js": "rollup -c build/rollup.conf.mjs --bundleConfigAsCjs --environment TARGET:js",
+    "dev:esm": "rollup -c build/rollup.conf.mjs --bundleConfigAsCjs --environment TARGET:esm"
+  },
+  "keywords": [
+    "gird",
+    "table"
+  ],
+  "author": "lance",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "clean-css-cli": "^5.6.3",
+    "eslint": "^9.31.0",
+    "jasmine": "^5.8.0",
+    "jasmine-browser-runner": "^3.0.0",
+    "jasmine-core": "^5.8.0",
+    "karma": "^6.4.4",
+    "karma-chrome-launcher": "^3.2.0",
+    "karma-cli": "^2.0.0",
+    "karma-jasmine": "^5.1.0",
+    "puppeteer": "24.11.0",
+    "rollup": "^4.45.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "sass": "1.89.2",
+    "terser": "^5.43.1"
+  },
+  "dependencies": {
+    "karma-firefox-launcher": "^2.1.3"
+  }
+}
