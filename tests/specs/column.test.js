@@ -53,4 +53,15 @@ describe("Column", function() {
 
         expect(feature.filterElement).toEqual("input");
     });
+
+    it("init should set headerFilterEmpty property", function() {
+        const column1 = { field: "comments", type: "string", headerFilterEmpty: true };
+        const column2 = { field: "hello", headerFilterEmpty: "world" };
+
+        const actual1 = new Column(column1, settings, 0);
+        const actual2 = new Column(column2, settings, 1);
+
+        expect(actual1.headerFilterEmpty).toEqual("datagrids-no-header");
+        expect(actual2.headerFilterEmpty).toEqual("world");
+    });
 });

@@ -32,6 +32,10 @@ class HeaderCell {
             this.element.style.width = column.width;
         }
 
+        if (column.headerFilterEmpty) {
+            this.span.classList.add(column.headerFilterEmpty);
+        }
+
         this.element.appendChild(this.span);
         this.element.context = this;
         this.span.innerText = column.label;

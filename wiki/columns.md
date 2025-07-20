@@ -28,6 +28,7 @@ const grid = new DataGrids("grid_element", {
 | filterCss | string | Overrides parent `tablefilterCss` property setting.  Will apply CSS class for target column's input element. |
 | columnSize | number | For use when you want to apply 12 columns system.  Will convert column size to associated CSS rule `datagrid-col-{size}`, and add to class list of header's `th` element. |
 | width | number | Will apply `width` style rule to header's `th` element. |
+| headerFilterEmpty | bool/string | A value of `true` will apply a style rule to match the height of the other headers that are using filtering. A string value to a style rule will also enable this property.  |
 
 ### Tooltip
 | attribute | type | description |
