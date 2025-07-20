@@ -97,6 +97,11 @@
   content: "▼";
 }
 
+.datagrids-no-header {
+  display: block;
+  padding-bottom: 30px;
+}
+
 .datagrids-input {
   color: #363636;
   display: block;

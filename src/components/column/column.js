@@ -36,6 +36,9 @@ class Column {
 
         if (this.hasFilter) {
             this.#initializeFilter(column, settings);
+        } else if (column?.headerFilterEmpty) {
+            this.headerFilterEmpty = (typeof column.headerFilterEmpty === "string") 
+                ? column.headerFilterEmpty : "datagrids-no-header";
         }
         //Tooltip setting.
         if (column.tooltipField) {
