@@ -27,9 +27,10 @@ class CustomModule {
      * @param {Object} rowData Row data for the current row.
      * @param {Column} column `Column` class model with column settings.
      * @param {HTMLTableRowElement} row Table row `tr` element currently being built.  This allows you to format the current row being processed.
+     * @param {HTMLTableCellElement} element Table cell `td` element.
      * @returns {string | HTMLElement} should return a string or HTML element.
      */
-    apply(rowData, column, row) {
+    apply(rowData, column, row, element) {
         //OPTIONAL.  Apply custom formatting logic.  Should return a string or element.
     }
 }

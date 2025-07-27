@@ -1,7 +1,7 @@
 import { GridCore } from "./core/gridCore.js";
 import { CsvModule } from "./modules/download/csvModule.js";
 import { FilterModule } from "./modules/filter/filterModule.js";
-import { RefreshModule } from "./modules/row/refreshModule.js";
+import { RefreshModule } from "./modules/refresh/refreshModule.js";
 import { RowCountModule } from "./modules/row/rowCountModule.js";
 import { SortModule } from "./modules/sort/sortModule.js";
 

@@ -72,7 +72,7 @@ class Cell {
                 this.element.append(FormatStar.apply(rowData, column));
                 break;
             case "module":
-                this.element.append(modules[column.formatterParams.name].apply(rowData, column, row));
+                this.element.append(modules[column.formatterParams.name].apply(rowData, column, row, this.element));
                 break;
             default:
                 this.element.innerText = rowData[column.field];

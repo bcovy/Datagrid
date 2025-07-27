@@ -166,9 +166,10 @@ class CustomModule {
      * @param {Array<object>} rowData Current row of data set being processed.
      * @param {Column} column `Column` class model with column settings.
      * @param {HTMLTableRowElement} row name of module where function is being called.
+     * @param {HTMLTableCellElement} element Table cell `td` element.
      * @returns {string | HTMLElement} should return a string or HTML element.
      */
-    apply(rowData, column, row) {
+    apply(rowData, column, row, element) {
         //Formatting logic, should return a string or element.
     }
 }
