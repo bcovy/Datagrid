@@ -26,7 +26,7 @@ export { ElementMultiSelect } from "../modules/filter/elements/elementMultiSelec
 export { FilterModule } from "../modules/filter/filterModule.js";
 export { PagerButtons } from "../modules/pager/pagerButtons.js";
 export { PagerModule } from "../modules/pager/pagerModule.js";
-export { RefreshModule } from "../modules/row/refreshModule.js";
+export { RefreshModule } from "../modules/refresh/refreshModule.js";
 export { RowModule } from "../modules/row/rowModule.js";
 export { RowCountModule } from "../modules/row/rowCountModule.js";
 export { SortModule } from "../modules/sort/sortModule.js";
