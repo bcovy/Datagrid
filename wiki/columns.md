@@ -41,6 +41,7 @@ const grid = new DataGrids("grid_element", {
 | attribute | type | description |
 | --------- | ---- | ----------- |
 | formatter | string/function | Will apply formatting or function to column's cells.  See **Formatters** |
+| formatterModuleName | string | Will apply formatting using associated module name.  *Module must be registered before grid's `init()` method is called.*  See **Formatters** |
 | formatterParams | object | Additional parameters you can pass to the formatter.  See **Formatters** |
 | filterType | string | Adds filter to header row.  Available condition: **equals**, **like**, **in**, **>**, **>=**, **<**, **<=**, **!=**, `function()`.  In addition, you can also provide a function type to implement custom behavior.  *Note: If grid is setup for remote processing, filter condition logic will be deferred to the remote server for processing and ignore internal logic.* |
 | filterParams | object | Optional.  Additional parameters you can pass to the header filter function. |
