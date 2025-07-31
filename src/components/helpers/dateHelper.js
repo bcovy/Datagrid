@@ -30,12 +30,15 @@ class DateHelper {
 
         return date;
     }
-
+    /**
+     * Returns `true` if value is a Date object type.
+     * @param {object} value 
+     * @returns {boolean} Returns `true` if value is a Date object type, otherwise `false`.
+     */
     static isDate(value) { 
         return Object.prototype.toString.call(value) === "[object Date]";
 
     }
-
 }
 
 export { DateHelper };
