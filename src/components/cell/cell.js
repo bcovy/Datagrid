@@ -2,7 +2,7 @@ import { FormatDateTime } from "./formatters/datetime.js";
 import { FormatLink } from "./formatters/link.js";
 import { FormatNumeric } from "./formatters/numeric.js";
 import { FormatStar } from "./formatters/star.js";
-import { cssHelper } from "../helpers/cssHelper.js";
+import { CssHelper } from "../helpers/cssHelper.js";
 
 class Cell {
     /**
@@ -43,7 +43,7 @@ class Cell {
         }
 
         tooltipElement.dataset.tooltip = content;
-        tooltipElement.classList.add(cssHelper.tooltip, layout);
+        tooltipElement.classList.add(CssHelper.tooltip, layout);
     }
 
     #init(rowData, column, modules, row) {

@@ -1,4 +1,4 @@
-import { cssHelper } from "../../../components/helpers/cssHelper.js";
+import { CssHelper } from "../../../components/helpers/cssHelper.js";
 import { ElementHelper } from "../../../components/helpers/elementHelper.js";
 /**
  * Create filter object that represents a element to filter between two values.  Creates a dropdown with a two input boxes 
@@ -12,9 +12,9 @@ class ElementBetween {
      */
     constructor(column, context) {
         this.context = context;
-        this.element = ElementHelper.div({ name: column.field, className: cssHelper.multiSelect.parentClass });
-        this.header = ElementHelper.div({ className: cssHelper.multiSelect.header });
-        this.optionsContainer = ElementHelper.div({ className: cssHelper.multiSelect.options });
+        this.element = ElementHelper.div({ name: column.field, className: CssHelper.multiSelect.parentClass });
+        this.header = ElementHelper.div({ className: CssHelper.multiSelect.header });
+        this.optionsContainer = ElementHelper.div({ className: CssHelper.multiSelect.options });
         this.field = column.field;
         this.fieldType = column.type;  //field value type.
         this.filterType = "between";  //condition type.
@@ -29,19 +29,19 @@ class ElementBetween {
     }
 
     #templateBetween() {
-        this.elementStart = ElementHelper.input({ className: cssHelper.input, id: `start_${this.context.settings.baseIdName}_${this.field}` });
+        this.elementStart = ElementHelper.input({ className: CssHelper.input, id: `start_${this.context.settings.baseIdName}_${this.field}` });
 
-        this.elementEnd = ElementHelper.input({ className: cssHelper.input, id: `end_${this.context.settings.baseIdName}_${this.field}` });
+        this.elementEnd = ElementHelper.input({ className: CssHelper.input, id: `end_${this.context.settings.baseIdName}_${this.field}` });
         this.elementEnd.style.marginBottom = "10px";
 
-        const start = ElementHelper.span({ innerText: "Start", className: cssHelper.betweenLabel });
-        const end =  ElementHelper.span({ innerText: "End", className: cssHelper.betweenLabel });
+        const start = ElementHelper.span({ innerText: "Start", className: CssHelper.betweenLabel });
+        const end =  ElementHelper.span({ innerText: "End", className: CssHelper.betweenLabel });
  
-        const btnApply = ElementHelper.create("button", { innerText: "Apply", className: cssHelper.betweenButton });
+        const btnApply = ElementHelper.create("button", { innerText: "Apply", className: CssHelper.betweenButton });
         btnApply.style.marginRight = "10px";
         btnApply.addEventListener("click", this.handlerClick);
 
-        const btnClear = ElementHelper.create("button", { innerText: "Clear", className: cssHelper.betweenButton });
+        const btnClear = ElementHelper.create("button", { innerText: "Clear", className: CssHelper.betweenButton });
         btnClear.addEventListener("click", this.handleButtonClear);
 
         this.optionsContainer.append(start, this.elementStart, end, this.elementEnd, btnApply, btnClear);
@@ -61,7 +61,7 @@ class ElementBetween {
         //update count label.
         if (this.countLabel === undefined) {
             this.countLabel = document.createElement("span");
-            this.countLabel.className = cssHelper.multiSelect.headerOption;
+            this.countLabel.className = CssHelper.multiSelect.headerOption;
             this.header.append(this.countLabel);
         }
 
@@ -74,7 +74,7 @@ class ElementBetween {
     };
 
     handleClick = async () => {
-        const status = this.header.classList.toggle(cssHelper.multiSelect.headerActive);
+        const status = this.header.classList.toggle(CssHelper.multiSelect.headerActive);
 
         if (!status) {
             //Close window and apply filter value.
@@ -91,8 +91,8 @@ class ElementBetween {
      * @param {Object} e Object that triggered event.
      */
     handleDocument = async (e) => {
-        if (!e.target.closest(".datagrids-input") && !e.target.closest(`#${this.header.id}`)) {
-            this.header.classList.remove(cssHelper.multiSelect.headerActive);
+        if (!e.target.closest(`.${CssHelper.input}`) && !e.target.closest(`#${this.header.id}`)) {
+            this.header.classList.remove(CssHelper.multiSelect.headerActive);
 
             await this.context.events.trigger("render");
 

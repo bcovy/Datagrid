@@ -1,4 +1,4 @@
-import { cssHelper } from "../../../components/helpers/cssHelper.js";
+import { CssHelper } from "../../../components/helpers/cssHelper.js";
 import { ElementHelper } from "../../../components/helpers/elementHelper.js";
 /**
  * Create filter object that represents a multi-select element.  Creates a dropdown with a list of options that can be 
@@ -13,9 +13,9 @@ class ElementMultiSelect {
      */
     constructor(column, context) {
         this.context = context;
-        this.element = ElementHelper.div({ name: column.field, className: cssHelper.multiSelect.parentClass });
-        this.header = ElementHelper.div({ className: cssHelper.multiSelect.header });
-        this.optionsContainer = ElementHelper.div({ className: cssHelper.multiSelect.options });
+        this.element = ElementHelper.div({ name: column.field, className: CssHelper.multiSelect.parentClass });
+        this.header = ElementHelper.div({ className: CssHelper.multiSelect.header });
+        this.optionsContainer = ElementHelper.div({ className: CssHelper.multiSelect.options });
         this.field = column.field;
         this.fieldType = column.type;  //field value type.
         this.filterType = "in";  //condition type.
@@ -49,7 +49,7 @@ class ElementMultiSelect {
     }
 
     handleClick = async () => {
-        const status = this.header.classList.toggle(cssHelper.multiSelect.headerActive);
+        const status = this.header.classList.toggle(CssHelper.multiSelect.headerActive);
 
         if (!status) {
             await this.context.events.trigger("render");
@@ -64,8 +64,8 @@ class ElementMultiSelect {
      * @param {Object} e Object that triggered event.
      */
     handleDocument = async (e) => {
-        if (!e.target.closest("." + cssHelper.multiSelect.option) && !e.target.closest(`#${this.header.id}`)) {
-            this.header.classList.remove(cssHelper.multiSelect.headerActive);
+        if (!e.target.closest("." + CssHelper.multiSelect.option) && !e.target.closest(`#${this.header.id}`)) {
+            this.header.classList.remove(CssHelper.multiSelect.headerActive);
 
             await this.context.events.trigger("render");
 
@@ -79,7 +79,7 @@ class ElementMultiSelect {
         //update count label.
         if (this.countLabel === undefined) {
             this.countLabel = document.createElement("span");
-            this.countLabel.className = cssHelper.multiSelect.headerOption;
+            this.countLabel.className = CssHelper.multiSelect.headerOption;
             this.header.append(this.countLabel);
         }
 
@@ -96,20 +96,20 @@ class ElementMultiSelect {
      * @param {Object} o Object that triggered the event.
      */
     handleOption = (o) => {
-        if (!o.currentTarget.classList.contains(cssHelper.multiSelect.selected)) {
+        if (!o.currentTarget.classList.contains(CssHelper.multiSelect.selected)) {
             //select item.
-            o.currentTarget.classList.add(cssHelper.multiSelect.selected);
+            o.currentTarget.classList.add(CssHelper.multiSelect.selected);
             o.currentTarget.dataset.selected = "true";
             
             this.selectedValues.push(o.currentTarget.dataset.value);
 
             if (this.listAll) {
-                const span = ElementHelper.span({ className: cssHelper.multiSelect.headerOption, innerText: o.currentTarget.dataset.value }, { value: o.currentTarget.dataset.value });
+                const span = ElementHelper.span({ className: CssHelper.multiSelect.headerOption, innerText: o.currentTarget.dataset.value }, { value: o.currentTarget.dataset.value });
                 this.header.append(span);
             }
         } else {
             //deselect item.
-            o.currentTarget.classList.remove(cssHelper.multiSelect.selected);
+            o.currentTarget.classList.remove(CssHelper.multiSelect.selected);
             o.currentTarget.dataset.selected = "false";
 
             this.selectedValues = this.selectedValues.filter(f => f !== o.currentTarget.dataset.value);
@@ -133,9 +133,9 @@ class ElementMultiSelect {
      * @returns {HTMLDivElement} Returns a div element that represents the option in the multi-select control.
      */
     createOption(item) { 
-        const option = ElementHelper.div({ className: cssHelper.multiSelect.option }, { value: item.value, selected: "false" });
-        const radio = ElementHelper.span({ className: cssHelper.multiSelect.optionRadio });
-        const text = ElementHelper.span({ className: cssHelper.multiSelect.optionText, innerHTML: item.text });
+        const option = ElementHelper.div({ className: CssHelper.multiSelect.option }, { value: item.value, selected: "false" });
+        const radio = ElementHelper.span({ className: CssHelper.multiSelect.optionRadio });
+        const text = ElementHelper.span({ className: CssHelper.multiSelect.optionText, innerHTML: item.text });
 
         option.addEventListener("click", this.handleOption);
         option.append(radio, text);
@@ -165,12 +165,12 @@ class ElementMultiSelect {
             //check if item is selected.
             if (this.selectedValues.includes(item.value)) {
                 //select item.
-                option.classList.add(cssHelper.multiSelect.selected);
+                option.classList.add(CssHelper.multiSelect.selected);
                 option.dataset.selected = "true";
                 newSelected.push(item.value);
 
                 if (this.listAll) {
-                    const span = ElementHelper.span({ className: cssHelper.multiSelect.headerOption, innerText: item.value }, { value: item.value });
+                    const span = ElementHelper.span({ className: CssHelper.multiSelect.headerOption, innerText: item.value }, { value: item.value });
                     this.header.append(span);
                 }
             }

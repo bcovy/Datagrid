@@ -1,3 +1,4 @@
+import { CssHelper } from "../helpers/cssHelper.js";
 /**
  * Defines a single column for the grid.  Transforms user's column definition into Class properties.
  * @class
@@ -44,12 +45,12 @@ class Column {
             this.#initializeFilter(column, settings);
         } else if (column?.headerFilterEmpty) {
             this.headerFilterEmpty = (typeof column.headerFilterEmpty === "string") 
-                ? column.headerFilterEmpty : "datagrids-no-header";
+                ? column.headerFilterEmpty : CssHelper.noHeader;
         }
         //Tooltip setting.
         if (column.tooltipField) {
             this.tooltipField = column.tooltipField;
-            this.tooltipLayout = column?.tooltipLayout === "right" ? "datagrids-tooltip-right" : "datagrids-tooltip-left";
+            this.tooltipLayout = column?.tooltipLayout === "right" ? CssHelper.tooltip.right : CssHelper.tooltip.left;
         }
     }
     /**
@@ -67,7 +68,7 @@ class Column {
         if (column.filterValues) {
             this.filterValues = column.filterValues;  //select option filter value.
             this.filterValuesRemoteSource = typeof column.filterValues === "string" ? column.filterValues : undefined;  //select option filter value ajax source.
-            this.filterElement = column.filterMultiSelect ? "multi" :"select";
+            this.filterElement = column.filterMultiSelect ? "multi" : "select";
             this.filterMultiSelect = column.filterMultiSelect;
         }
     }

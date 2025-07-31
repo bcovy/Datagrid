@@ -8,7 +8,7 @@ export { SettingsGrid } from "../settings/settingsGrid.js";
 export { DataLoader } from "../components/data/dataLoader.js";
 export { DataPersistence } from "../components/data/dataPersistence.js";
 export { DataPipeline } from "../components/data/dataPipeline.js";
-export { cssHelper } from "../components/helpers/cssHelper.js";
+export { CssHelper } from "../components/helpers/cssHelper.js";
 export { ElementHelper } from "../components/helpers/elementHelper.js";
 export { DateHelper } from "../components/helpers/dateHelper.js";
 export { FormatDateTime } from "../components/cell/formatters/datetime.js";
