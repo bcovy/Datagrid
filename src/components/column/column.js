@@ -25,8 +25,14 @@ class Column {
                 : column.field[0].toUpperCase() + column.field.slice(1);  //column title.
         }
 
-        this.formatter = column.formatter;  //formatter type or function.
-        this.formatterParams = column.formatterParams;
+        if (column?.formatterModuleName) { 
+            this.formatter = "module";
+            this.formatterModuleName = column.formatterModuleName;  //formatter module name.
+        } else {
+            this.formatter = column.formatter;  //formatter type or function.
+            this.formatterParams = column.formatterParams;
+        }
+
         this.headerCss = column.headerCss;
         this.columnSize = column?.columnSize ? `datagrids-col-${column.columnSize}` : "";
         this.width = column?.width ?? undefined;

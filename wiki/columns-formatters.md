@@ -149,7 +149,7 @@ const columns = {
 ```
 
 ### module
-A custom module can be defined to apply formatting that may involve multiple columns, complex logic, or encapsulate shared formatting beyond current offerings.  Module must conform to template outlined below, using `apply` function to implement logic.  In addition, name of module must be identified in column's `formatterParams` property.
+A custom module can apply advanced formatting—such as multi-column logic or shared formatting not covered by built-in options. It must follow the template below, implement logic in the `apply` function, and be registered before calling the grids `init()` method. The module’s name must be set in the column's `formatterModuleName` property, which overrides the `formatter` property setting.
 ```js
 //Module template
 class CustomModule {
@@ -173,13 +173,12 @@ class CustomModule {
         //Formatting logic, should return a string or element.
     }
 }
-
+//REQUIRED.  Must be a unique name.
 CustomModule.moduleName = "custom";
 
 //column setup
 {
     field: "openDate",
-    formatter: "module",
-    formatterParams: { name: CustomModule.moduleName }
+    formatterModuleName: CustomModule.moduleName
 }
 ```
