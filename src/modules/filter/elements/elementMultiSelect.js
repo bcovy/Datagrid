@@ -127,20 +127,33 @@ class ElementMultiSelect {
             this.createCountLabel();
         }
     };
+    /**
+     * Helper function to create an option element for the multi-select control.
+     * @param {Object} item key/value pair object that contains the value and text for the option.
+     * @returns {HTMLDivElement} Returns a div element that represents the option in the multi-select control.
+     */
+    createOption(item) { 
+        const option = ElementHelper.div({ className: cssHelper.multiSelect.option }, { value: item.value, selected: "false" });
+        const radio = ElementHelper.span({ className: cssHelper.multiSelect.optionRadio });
+        const text = ElementHelper.span({ className: cssHelper.multiSelect.optionText, innerHTML: item.text });
+
+        option.addEventListener("click", this.handleOption);
+        option.append(radio, text);
+
+        return option;
+    }
 
     templateContainer = (data) => {
         for (const item of data) {
-            const option = ElementHelper.div({ className: cssHelper.multiSelect.option }, { value: item.value, selected: "false" });
-            const radio = ElementHelper.span({ className: cssHelper.multiSelect.optionRadio });
-            const text = ElementHelper.span({ className: cssHelper.multiSelect.optionText, innerHTML: item.text });
-
-            option.addEventListener("click", this.handleOption);
-            option.append(radio, text);
-
+            const option = this.createOption(item);
             this.optionsContainer.append(option);
         }
     };
-
+    /**
+     * Called when the grid pipeline's `refresh` event is triggered.  It clears the current options and
+     * recreates them based on the data provided.  It also updates the selected values based on the current state of the options.
+     * @param {Array} data Array of objects that represent the options to be displayed in the multi-select control.
+     */
     refreshSelectOptions = (data) => {
         this.optionsContainer.replaceChildren();
         this.header.replaceChildren();
@@ -148,11 +161,7 @@ class ElementMultiSelect {
         const newSelected = [];
 
         for (const item of data) {
-            const option = ElementHelper.div({ className: cssHelper.multiSelect.option }, { value: item.value, selected: "false" });
-            const radio = ElementHelper.span({ className: cssHelper.multiSelect.optionRadio });
-            const text = ElementHelper.span({ className: cssHelper.multiSelect.optionText, innerHTML: item.text });
-
-            option.addEventListener("click", this.handleOption);
+            const option = this.createOption(item);
             //check if item is selected.
             if (this.selectedValues.includes(item.value)) {
                 //select item.
@@ -162,12 +171,9 @@ class ElementMultiSelect {
 
                 if (this.listAll) {
                     const span = ElementHelper.span({ className: cssHelper.multiSelect.headerOption, innerText: item.value }, { value: item.value });
-
                     this.header.append(span);
                 }
             }
-
-            option.append(radio, text);
 
             this.optionsContainer.append(option);
         }
